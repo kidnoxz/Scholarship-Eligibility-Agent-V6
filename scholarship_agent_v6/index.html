@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Eligibility Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <h1 id="txt-title">Scholarship Eligibility Portal</h1>
+            <div class="lang-selector">
+                <select id="lang-select">
+                    <option value="en">English</option>
+                    <option value="ta">தமிழ் (Tamil)</option>
+                    <option value="ml">മലയാളം (Malayalam)</option>
+                </select>
+            </div>
+        </header>
+
+        <form id="eligibility-form" class="profile-form" onsubmit="event.preventDefault(); evaluateScholarships();">
+            <!-- Personal and Domicile Profile -->
+            <div class="form-section">
+                <h2 id="txt-sec-personal">Personal Profile</h2>
+                
+                <div class="form-group">
+                    <label id="lbl-state" for="state">Domicile State</label>
+                    <select id="state" required onchange="handleStateChange()">
+                        <option value="">Select State</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Other">Other States</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label id="lbl-category" for="category">Category</label>
+                    <select id="category" required>
+                        <option value="General">General / Open</option>
+                        <option value="OBC">OBC</option>
+                        <option value="SC">SC</option>
+                        <option value="ST">ST</option>
+                        <option value="MBC/DNC" class="tn-specific" style="display:none;">MBC / DNC</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label id="lbl-disability" for="disability">Disability Status (UDID)</label>
+                    <select id="disability" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes (40% or above)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Academic Enrollment Details -->
+            <div class="form-section academic">
+                <h2 id="txt-sec-academic">Academic Enrollment</h2>
+
+                <div class="form-grid-inner">
+                    <div class="form-group">
+                        <label id="lbl-course" for="course">Course Type</label>
+                        <select id="course" required>
+                            <option value="Arts/Science">General Arts / Science</option>
+                            <option value="Engineering">Engineering / Technology</option>
+                            <option value="Medical">Medical / Professional</option>
+                            <option value="Diploma">Diploma Course</option>
+                            <option value="PostGrad">Post Graduation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label id="lbl-year" for="year">Academic Year</label>
+                        <select id="year" required>
+                            <option value="1">1st Year (Fresh)</option>
+                            <option value="2">2nd Year (Renewal)</option>
+                            <option value="3">3rd Year (Renewal)</option>
+                            <option value="4">4th Year (Renewal)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grid-inner">
+                    <div class="form-group">
+                        <label id="lbl-college" for="college">College/Institution Type</label>
+                        <select id="college" required>
+                            <option value="Government">Government Institution</option>
+                            <option value="Aided">Government Aided College</option>
+                            <option value="Private">Private / Self-Financing</option>
+                            <option value="Central">Central Tier (IIT/NIT/Central Univ)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label id="lbl-marks" for="marks">Previous Academic Marks (%)</label>
+                        <input type="number" id="marks" min="0" max="100" placeholder="e.g. 75" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Metrics -->
+            <div class="form-section financial full-width">
+                <h2 id="txt-sec-financial">Financial Profile</h2>
+                <div class="form-group">
+                    <label id="lbl-income" for="income">Annual Family Income (₹)</label>
+                    <input type="number" id="income" min="0" placeholder="e.g. 150000" required>
+                </div>
+            </div>
+
+            <div class="full-width">
+                <button type="submit" id="btn-submit" class="btn-primary">Check Eligible Schemes</button>
+            </div>
+        </form>
+
+        <!-- Dynamic Evaluation Desk -->
+        <div class="results-section">
+            <h2 id="txt-sec-results">Applicable Scholarship Schemes</h2>
+            <div id="results-wrapper">
+                <p id="txt-no-results" style="color: #494D5F; font-style: italic;">Fill out your academic and financial profile above to query matched national and state schemes.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="agent.js"></script>
+</body>
+</html>
